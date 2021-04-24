@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="addon_chat_crm_form_view" model="ir.ui.view">
+            <field name="name">addon.chat.crm.form.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]/h1/field[@name='name']" position="after">
+                    <!--                    <a title="Chat" icon="fa-comments" href="#" class="ml8 o_crm_chat_btn"-->
+                    <!--                       attrs="{'invisible': [('facebook_acc','=', False)]}"-->
+                    <!--                       role="button"><i class="fa fa-comments"/></a>-->
+                    <button name="open_chat" type="object" class="oe_stat_button"
+                            attrs="{'invisible': [('facebook_acc','=', False)]}">
+                        <i class="fa fa-comments"/>
+                    </button>
+                </xpath>
+                <xpath expr="//div[hasclass('o_row_readonly')][2]" position="after">
+                    <label for="facebook_acc" class="oe_inline"/>
+                    <div class="o_row o_row_readonly">
+                        <field name="facebook_acc" string="Facebook"/>
+                    </div>
+                </xpath>
+
+                <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+                    <button name="open_chat" type="object" class="oe_stat_button" icon="fa-comments"
+                            attrs="{'invisible': [('facebook_acc','=', False)]}">
+                        <div class="o_stat_info">
+                            <span>Chat</span>
+                        </div>
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="addon_chat_crm_kanban_view" model="ir.ui.view">
+            <field name="name">addon.chat.crm.kanban.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="js_class">crm_kanban_view</attribute>
+                </xpath>
+                <xpath expr="//kanban" position="inside">
+                    <field name="facebook_acc"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_kanban_bottom_right')]/field" position="before">
+                    <!--                    <a title="Chat" icon="fa-comments" href="#" class="ml8 o_crm_chat_btn"-->
+                    <!--                       attrs="{'invisible': [('facebook_acc','=', False)]}"-->
+                    <!--                       role="button"><i class="fa fa-comments"/></a>-->
+                    <button name="open_chat" type="object" class="oe_highlight" string="Chat"
+                            attrs="{'invisible': [('facebook_acc','=', False)]}">
+                        <i class="fa fa-comments"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

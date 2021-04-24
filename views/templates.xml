@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_backend" name="crm assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/addon_chat_crm/static/src/js/chat.js"></script>
+            <script type="text/javascript" src="/addon_chat_crm/static/src/models/crm/crm.js"></script>
+            <script type="text/javascript" src="/addon_chat_crm/static/src/models/messaging/messaging.js"></script>
+        </xpath>
+    </template>
+</odoo>
